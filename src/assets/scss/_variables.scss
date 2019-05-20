@@ -9,7 +9,7 @@ $color-palette: (
   'primary-light': #ffff54,
 );
 
-@function scotch-color($key: 'primary') {
+@function get-color($key: 'primary') {
     @return map-get($color-palette, $key);
 }
   

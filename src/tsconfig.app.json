@@ -5,11 +5,12 @@
     "module": "es2015",
     "outDir": "../out-tsc/app",
     "types": [],
+    "baseUrl": "src",
     "paths": {
-      "@modules/*" : ["src/app/Modules/*"],
-      "@core/*" : ["src/app/Core/*"],
-      "@shared/*" : ["src/app/Shared/*"],
-      "@scss/*" : ["src/assets/scss/*"]
+      "@modules/*" : ["app/Modules/*"],
+      "@core/*" : ["app/Core/*"],
+      "@shared/*" : ["app/Shared/*"],
+      "@scss/*" : ["assets/scss/*"]
     }
   },
   "exclude": [

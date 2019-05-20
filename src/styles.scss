@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "./assets/scss/resets";
+@import "./assets/scss/variables";
+
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}

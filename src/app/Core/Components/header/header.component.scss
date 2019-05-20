@@ -1,0 +1,90 @@
+@import 'variables';
+
+header {
+  h5 {
+    margin: 0 0 3px 10px;
+  }
+
+  padding: 10px;
+  background-color: get-color('greyscale-mid');
+  color: white;
+}
+
+// Burger 
+// Inspi : https://jonsuh.com/hamburgers/
+.burger {
+  padding: 10px 10px;
+  display: flex;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &.is-active:hover {
+    opacity: 0.7;
+  }
+}
+
+.burger-box {
+  width: 25px;
+  display: flex;
+  position: relative;
+}
+
+.burger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+  }
+
+  &::before {
+    top: -8px;
+  }
+
+  &::after {
+    bottom: -8px;
+  }
+}
+
+.burger-inner,
+.burger-inner::before,
+.burger-inner::after {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+// Arrow Turn  
+.burger--arrowturn.is-active .burger-inner {
+  transform: rotate(-180deg);
+
+  &::before {
+    transform: translate3d(8px, 0, 0) rotate(45deg) scale(0.7, 1);
+    top: -5px;
+  }
+
+  &::after {
+    transform: translate3d(8px, 0, 0) rotate(-45deg) scale(0.7, 1);
+    top: 5px;
+  }
+}
