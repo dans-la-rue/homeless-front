@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { MenuService } from '../../Services/menu.service';
 
 @Component({
   selector: 'hl-header',
@@ -16,8 +17,9 @@ export class HeaderComponent implements OnInit {
   isSearchActive: boolean = false;
 
   @ViewChild("search") searchInput: ElementRef
+  @Output() menu = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private menuService: MenuService) { }
 
   ngOnInit() { }
 
@@ -47,6 +49,8 @@ export class HeaderComponent implements OnInit {
     this.toggleMenuStatus();
     if (this.isSearchActive) {
       this.toggleSearchStatus();
+    } else {
+      this.menuService.emitMenuStatus(this.isMenuActive);
     }
   }
 
