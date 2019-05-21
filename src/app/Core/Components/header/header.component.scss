@@ -1,13 +1,36 @@
 @import 'variables';
 
 header {
-  h5 {
-    margin: 0 0 3px 10px;
-  }
-
-  padding: 10px;
+  padding: 15px;
   background-color: get-color('greyscale-mid');
   color: white;
+
+  h5 {
+    margin: 0 0 4px 10px;
+  }
+
+  input {
+    margin: 0 10px;
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 2px solid get-color('greyscale-light');
+	  // box-shadow: inset 0 0 0 2px coral;
+    caret-color: get-color('primary');
+    color: get-color('primary');
+    
+  }
+
+  fa-icon {
+    width: 35px;
+    font-size: 25px;
+    margin: 0 10px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 // Burger 
@@ -50,7 +73,7 @@ header {
   &::before,
   &::after {
     content: "";
-    display: block;
+    display: flex;
   }
 
   &::before {

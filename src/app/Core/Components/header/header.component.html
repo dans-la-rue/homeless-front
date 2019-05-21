@@ -1,12 +1,28 @@
 <header>
   <nav class="d-flex flex-row align-items-center">
-    <div class="burger burger--arrowturn"
-      (click)="toggleMenuStatus()" 
-      [class.is-active]="isMenuActive">
+    <div class="burger burger--arrowturn" (click)="onBurger()" [class.is-active]="isMenuActive">
       <div class="burger-box">
         <div class="burger-inner"></div>
       </div>
     </div>
-    <h5>Dans la rue</h5>
+
+    <div class="d-flex flex-grow-1">
+      <ng-container *ngIf="!isSearchActive">
+        <h5 *ngIf="!isMenuActive">Dans la rue</h5>
+        <h5 *ngIf="isMenuActive">Select a center Category</h5>
+      </ng-container>
+      <input #search *ngIf="isSearchActive" type="text"
+      (keydown)="keyDownFunction($event)">
+    </div>
+
+    <fa-icon class="d-flex justify-content-center"
+      [icon]="faTimes" 
+      (click)="clear(search)" 
+      *ngIf="isSearchActive"></fa-icon>
+
+    <fa-icon 
+      class="d-flex justify-content-center" 
+      [icon]="faSearch" 
+      (click)="onSearch(search)"></fa-icon>
   </nav>
 </header>
