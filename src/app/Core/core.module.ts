@@ -6,19 +6,22 @@ import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
-    HeaderComponent
+    HeaderComponent,
+    MenuComponent
 } from './Components';
 
 @NgModule({
     declarations: [
-        HeaderComponent
+        HeaderComponent,
+        MenuComponent
     ],
     imports: [
         CommonModule,
         FontAwesomeModule
     ],
     exports: [
-        HeaderComponent
+        HeaderComponent,
+        MenuComponent
     ]
 })
 export class CoreModule { }
