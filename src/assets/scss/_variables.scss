@@ -1,0 +1,15 @@
+// Inspi -> https://scotch.io/tutorials/aesthetic-sass-2-colors
+
+$color-palette: ( 
+  'greyscale-mid': #212121,
+  'greyscale-dark': #000,
+  'greyscale-light': #484848,
+  'primary': #ffde00,
+  'primary-dark': #c7ad00,
+  'primary-light': #ffff54,
+);
+
+@function get-color($key: 'primary') {
+    @return map-get($color-palette, $key);
+}
+  
