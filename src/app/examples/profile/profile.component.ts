@@ -18,12 +18,11 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    var headers_object = new HttpHeaders();
-    headers_object.append('Content-Type', 'application/json');
-    headers_object.append('Authorization', 'Basic ' + btoa('admin:nimda'));
-
     const httpOptions = {
-      headers: headers_object
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa('admin:nimda')
+      })
     };
     this._httpClient.get(this.url, httpOptions)
       .subscribe(sheltersList => {
