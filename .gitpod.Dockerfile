@@ -13,5 +13,5 @@ FROM gitpod/workspace-full
  #&& sudo apt-get install -y tool \
  #&& sudo rm -rf /var/lib/apt/lists/*
 
-RUN wget -O ~/vsls-reqs https://aka.ms/vsls-linux-prereq-script && chmod +x ~/vsls-reqs &&  sudo ~/vsls-reqs
+RUN wget -O ~/vsls-reqs https://aka.ms/vsls-linux-prereq-script && chmod +x ~/vsls-reqs && sudo ~/vsls-reqs
 
