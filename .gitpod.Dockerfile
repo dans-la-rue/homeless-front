@@ -9,9 +9,9 @@ FROM gitpod/workspace-full
 #
 # More information: https://www.gitpod.io/docs/config-docker/
 
-RUN sudo apt-get update \
- && sudo apt-get install -y tool \
- && sudo rm -rf /var/lib/apt/lists/*
+#RUN sudo apt-get update \
+ #&& sudo apt-get install -y tool \
+ #&& sudo rm -rf /var/lib/apt/lists/*
 
 RUN wget -O ~/vsls-reqs https://aka.ms/vsls-linux-prereq-script && chmod +x ~/vsls-reqs &&  sudo ~/vsls-reqs
 
