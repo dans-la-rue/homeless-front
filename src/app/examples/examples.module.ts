@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import {ProfileComponent} from './profile/profile.component';
+import {SheltersListComponent} from './profile/shelters-list.component';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
@@ -14,7 +14,7 @@ import {HttpClientModule} from '@angular/common/http';
         HttpClientModule,
     ],
     declarations: [
-        ProfileComponent
+        SheltersListComponent
     ]
 })
 export class ExamplesModule { }
