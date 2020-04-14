@@ -28,11 +28,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+
 ## documentation
 
-[https://demos.creative-tim.com/paper-kit-2-angular/#/nucleoicons][icons]  
-[https://demos.creative-tim.com/paper-kit-2-angular/#/documentation/navigation][paperkit doc]  
-[https://demos.creative-tim.com/paper-kit-2-angular/#/home][paperkit components]  
+[icons](https://demos.creative-tim.com/paper-kit-2-angular/#/nucleoicons)  
+[paperkit doc](https://demos.creative-tim.com/paper-kit-2-angular/#/documentation/navigation)  
+[paperkit components](https://demos.creative-tim.com/paper-kit-2-angular/#/home)  
 
 
 # [Paper Kit 2 Angular - Free Bootstrap 4 UI Kit](https://demos.creative-tim.com/paper-kit-2-angular/)
