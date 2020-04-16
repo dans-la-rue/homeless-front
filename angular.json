@@ -19,7 +19,8 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              "src/CNAME"
+              "src/CNAME",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -52,7 +53,9 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
             }
           }
         },
@@ -89,7 +92,8 @@
             ],
             "assets": [
               "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/manifest.webmanifest"
             ]
           }
         },
