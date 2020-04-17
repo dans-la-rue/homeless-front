@@ -1,5 +1,6 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
+import {SwUpdate} from '@angular/service-worker';
 
 @Component({
     selector: 'app-navbar',
@@ -9,14 +10,24 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    deferredPrompt;
+    showButton: boolean = true;
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(public location: Location, private element : ElementRef,private swUpdate: SwUpdate) {
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        // Manage frontend application versions
+        if (this.swUpdate.isEnabled) {
+          this.swUpdate.available.subscribe(() => {
+            if (confirm('New version available. Load New Version?')) {
+              window.location.reload();
+            }
+          });
+        }
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -70,5 +81,41 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+
+    /**
+     * Event to purpose to the user to install application
+     * @param e event received
+     */
+    @HostListener('window:beforeinstallprompt', ['$event'])
+    onbeforeinstallprompt(e) {
+      console.log('onbeforeinstallprompt event : ' + JSON.stringify(e));
+      this.deferredPrompt = e;
+      this.showButton = true;
+    }
+
+
+    /**
+     * Propose to the user to install the application
+     */
+    addToHomeScreen() {
+      // hide our user interface that shows our A2HS button
+      if (this.deferredPrompt) {
+        this.showButton = false;
+        // Show the prompt
+        this.deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        this.deferredPrompt.userChoice
+          .then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
+            this.deferredPrompt = undefined;
+          });
+      } else {
+        console.error('The home screen option is not possible');
+      }
     }
 }

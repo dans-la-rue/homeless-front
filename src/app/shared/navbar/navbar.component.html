@@ -10,12 +10,16 @@
         </div>
         <div class="navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" *ngIf="!isDocumentation()">
-                    <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href="https://github.com/dans-la-rue/homless-front" target="_blank">
-                        <i class="fa fa-github"></i>
-                        <p class="d-lg-none">GitHub</p>
-                    </a>
-                </li>
+              <li class="nav-item" *ngIf="!isDocumentation()">
+                <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href="https://github.com/dans-la-rue/homless-front" target="_blank"> <i class="fa fa-github"></i>
+                  <p class="d-lg-none">GitHub</p>
+                </a>
+              </li>
+              <li class="nav-item" *ngIf="!isDocumentation()">
+                <button type="button" class="btn btn-outline-default btn-danger" (click)="addToHomeScreen()"
+                        *ngIf="showButton">Add to Home Screen
+                </button>
+              </li>
             </ul>
         </div>
     </div>
