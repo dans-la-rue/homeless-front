@@ -9,6 +9,7 @@ import {Shelter} from '../../models/Shelter.models';
 export class ShelterComponent implements OnInit {
 
   @Input() shelter: Shelter;
+  edit: boolean = false;
 
   constructor() {
   }
@@ -16,4 +17,8 @@ export class ShelterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    console.log('tt');
+    // TODO: PUT request
+  }
 }

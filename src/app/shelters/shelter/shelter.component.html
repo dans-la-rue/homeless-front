@@ -1,13 +1,35 @@
-<div class="card col-md-6 ml-auto mr-auto text-center" style="width: 18rem;">
-  <div class="card-header">
-    Featured
-  </div>
+<div class="card col-md-12 ml-auto mr-auto text-center" style="width: 18rem;">
+  <!--  <div class="card-header">-->
+  <!--  </div>-->
+  <h5 class="card-title">Shelter {{shelter.id}} edit {{edit}}</h5>
+  <button type="button" (click)="this.edit=!this.edit" class="btn btn-danger btn-link">
+    <img src="./assets/icons/pencil.svg" alt="Edit">
+  </button>
   <div class="card-body">
-    <h5 class="card-title">Shelter name</h5>
-    <!--                  <h6 class="card-subtitle mb-2 text-muted">Shelter name</h6>-->
-    <p class="card-text">id: {{shelter.id}}</p>
-    <p class="card-text">address: {{shelter.address}}</p>
-    <p class="card-text">available beds: {{shelter.availableBeds}}</p>
-    <!--      <a href="#" class="card-link">Another link</a>-->
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="address">address</label>
+        <input *ngIf="edit" class="form-control" id="address" placeholder="{{shelter.address}}">
+        <p class="card-text">{{shelter.address}}</p>
+
+        <label for="availableBeds">available beds</label>
+        <input *ngIf="edit" class="form-control" id="availableBeds" placeholder="{{shelter.availableBeds}}">
+        <p class="card-text">{{shelter.availableBeds}}</p>
+
+        <!--                  <h6 class="card-subtitle mb-2 text-muted">Shelter name</h6>-->
+        <!--      <a href="#" class="card-link">Another link</a>-->
+
+        <!--
+                <button type="button" (click)="this.edit=!this.edit" class="btn btn-danger btn-link">
+                  <img src="./assets/icons/pencil.svg" alt="Edit">
+                </button>
+        -->
+
+        <div class="form-row">
+          <button type="submit">Save</button>
+        </div>
+
+      </div>
+    </form>
   </div>
 </div>
