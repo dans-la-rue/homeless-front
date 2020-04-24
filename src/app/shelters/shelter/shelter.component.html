@@ -1,20 +1,22 @@
 <div class="card col-md-12 ml-auto mr-auto text-center" style="width: 18rem;">
   <!--  <div class="card-header">-->
   <!--  </div>-->
-  <h5 class="card-title">Shelter {{shelter.id}} edit {{edit}}</h5>
+  <h5 class="card-title">Shelter {{shelter.id}}</h5>
   <button type="button" (click)="this.edit=!this.edit" class="btn btn-danger btn-link">
     <img src="./assets/icons/pencil.svg" alt="Edit">
   </button>
   <div class="card-body">
-    <form (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
       <div class="form-group">
         <label for="address">address</label>
-        <input *ngIf="edit" class="form-control" id="address" placeholder="{{shelter.address}}">
-        <p class="card-text">{{shelter.address}}</p>
+        <input *ngIf="edit" class="form-control" id="address"
+               formControlName="address" placeholder="{{shelter.address}}">
+        <p *ngIf="!edit" class="card-text">{{shelter.address}}</p>
 
         <label for="availableBeds">available beds</label>
-        <input *ngIf="edit" class="form-control" id="availableBeds" placeholder="{{shelter.availableBeds}}">
-        <p class="card-text">{{shelter.availableBeds}}</p>
+        <input *ngIf="edit" class="form-control" id="availableBeds"
+               formControlName="availableBeds" placeholder="{{shelter.availableBeds}}">
+        <p *ngIf="!edit" class="card-text">{{shelter.availableBeds}}</p>
 
         <!--                  <h6 class="card-subtitle mb-2 text-muted">Shelter name</h6>-->
         <!--      <a href="#" class="card-link">Another link</a>-->
@@ -25,8 +27,8 @@
                 </button>
         -->
 
-        <div class="form-row">
-          <button type="submit">Save</button>
+        <div *ngIf="edit" class="form-row">
+          <button class="btn btn-outline-default btn-danger" type="submit">Save</button>
         </div>
 
       </div>
