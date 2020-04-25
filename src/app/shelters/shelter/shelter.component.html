@@ -1,13 +1,25 @@
 <div class="card text-center">
   <div class="card-header">
-    Featured
+    <div class="card-header-shltr-avatar ">
+      <a href="https://placeholder.com"><img class="img-circle img-no-padding img-responsive"
+          src="https://via.placeholder.com/40"></a>
+    </div>
+    <div class="card-header-shltr-title">Featured</div>
+
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Shelter name</h5>
+  <div class="card-image">
+    <a href="https://placeholder.com"><img class="img-fluid" src="https://via.placeholder.com/250"></a>
+  </div>
+  <div class="card-body text-left">
+    <h6 class="card-title">Shelter name</h6>
     <!--                  <h6 class="card-subtitle mb-2 text-muted">Shelter name</h6>-->
-    <p class="card-text">id: {{shelter.id}}</p>
-    <p class="card-text">address: {{shelter.address}}</p>
-    <p class="card-text">available beds: {{shelter.availableBeds}}</p>
+    <div class="card-text"><span>id:</span> {{shelter.id}}</div>
+    <div class="card-text"><span>address:</span> {{shelter.address}}</div>
+    <div class="card-text"><span>available:</span> {{shelter.availableBeds}}</div>
     <!--      <a href="#" class="card-link">Another link</a>-->
+  </div>
+  <div class="card-footer text-left pt-0">
+    <a _ngcontent-c4="" class="like-lnk btn btn-link btn-default" href="#0">Like</a>
+    <a _ngcontent-c4="" class="btn btn-link btn-default" href="#0">Share</a>
   </div>
 </div>
