@@ -1,19 +1,18 @@
-<div class="card col-md-12 ml-auto mr-auto text-center" style="width: 18rem;">
+<div class="card text-center">
   <div class="card-header">
-    <div class="card-header-shltr-avatar ">
-      <a href="https://placeholder.com"><img class="img-circle img-no-padding img-responsive"
-                                             src="https://via.placeholder.com/40"></a>
+    <div class="card-header-shltr-avatar">
+      <a href="https://placeholder.com">
+        <img class="img-circle img-no-padding img-responsive" src="https://via.placeholder.com/40">
+      </a>
     </div>
-    <div class="card-header-shltr-title">Featured</div>
-
+    <div class="card-header-shltr-title">Shelter {{shelter.id}}</div>
+    <button type="button" (click)="this.edit=!this.edit" class="btn btn-danger btn-link">
+      <img src="./assets/icons/pencil.svg" alt="Edit">
+    </button>
   </div>
   <div class="card-image">
     <a href="https://placeholder.com"><img class="img-fluid" src="https://via.placeholder.com/250"></a>
   </div>
-  <h5 class="card-title">Shelter {{shelter.id}}</h5>
-  <button type="button" (click)="this.edit=!this.edit" class="btn btn-danger btn-link">
-    <img src="./assets/icons/pencil.svg" alt="Edit">
-  </button>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
       <div class="form-group">
@@ -41,5 +40,9 @@
         </div>
       </div>
     </form>
+    <div class="card-footer text-left pt-0">
+      <a _ngcontent-c4="" class="like-lnk btn btn-link btn-default" href="#0">Like</a>
+      <a _ngcontent-c4="" class="btn btn-link btn-default" href="#0">Share</a>
+    </div>
   </div>
 </div>
