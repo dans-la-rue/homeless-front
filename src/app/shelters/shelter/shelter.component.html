@@ -1,6 +1,15 @@
 <div class="card col-md-12 ml-auto mr-auto text-center" style="width: 18rem;">
-  <!--  <div class="card-header">-->
-  <!--  </div>-->
+  <div class="card-header">
+    <div class="card-header-shltr-avatar ">
+      <a href="https://placeholder.com"><img class="img-circle img-no-padding img-responsive"
+                                             src="https://via.placeholder.com/40"></a>
+    </div>
+    <div class="card-header-shltr-title">Featured</div>
+
+  </div>
+  <div class="card-image">
+    <a href="https://placeholder.com"><img class="img-fluid" src="https://via.placeholder.com/250"></a>
+  </div>
   <h5 class="card-title">Shelter {{shelter.id}}</h5>
   <button type="button" (click)="this.edit=!this.edit" class="btn btn-danger btn-link">
     <img src="./assets/icons/pencil.svg" alt="Edit">
@@ -30,7 +39,6 @@
         <div *ngIf="edit" class="form-row">
           <button class="btn btn-outline-default btn-danger" type="submit">Save</button>
         </div>
-
       </div>
     </form>
   </div>
