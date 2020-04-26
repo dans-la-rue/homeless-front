@@ -1,6 +1,9 @@
 <div class="wrapper">
   <div class="page-header page-header-xs" data-parallax="true"></div>
   <div class="section profile-content">
+    <button type="button" (click)="addShelter()" class="btn btn-danger btn-link">
+      <img src="./assets/icons/pencil.svg" alt="Edit">
+    </button>
     <div class="container">
       <div class="row">
         <shelter *ngFor="let shelter of sheltersList" [shelter]="shelter"></shelter>

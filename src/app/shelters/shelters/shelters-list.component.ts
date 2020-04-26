@@ -13,6 +13,10 @@ export class SheltersListComponent implements OnInit {
 
   private uri = 'api/v1/shelters';
   sheltersList: Shelter[];
+  shelter = {
+    address: 'asfsadfsa',
+    availableBeds: 6
+  } as Shelter;
   private url = environment.baseUrl + '/' + this.uri;
 
   constructor(private _httpClient: HttpClient) {
@@ -33,4 +37,17 @@ export class SheltersListComponent implements OnInit {
       );
   }
 
+  addShelter() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa('admin:nimda')
+      })
+    };
+    this._httpClient.post<Shelter>(this.url, this.shelter, httpOptions)
+      .subscribe((shelterCreated: Shelter) => {
+          console.log(shelterCreated);
+        }
+      );
+  }
 }
