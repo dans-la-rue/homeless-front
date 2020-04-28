@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Shelter} from '../../models/Shelter.models';
-import {ShelterList} from '../../models/ShelterList.models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -41,9 +40,8 @@ export class ShelterComponent implements OnInit {
         'Authorization': 'Basic ' + btoa('admin:nimda')
       })
     };
-    this._httpClient.put<ShelterList>(this.url + '/' + this.shelter.id, this.shelter, httpOptions)
-      .subscribe((sheltersList: ShelterList) => {
-          this.sheltersList = sheltersList.content;
+    this._httpClient.put<Shelter>(this.url + '/' + this.shelter.id, this.shelter, httpOptions)
+      .subscribe((shelter: Shelter) => {
         }
       );
   }

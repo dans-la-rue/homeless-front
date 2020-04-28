@@ -4,6 +4,9 @@
     <button type="button" (click)="addShelter()" class="btn btn-danger btn-link">
       <img src="./assets/icons/pencil.svg" alt="Edit">
     </button>
+    <button type="button" (click)="deleteShelter()" class="btn btn-danger btn-link">
+      <img src="./assets/icons/delete.svg" alt="Delete">
+    </button>
     <div class="container">
       <div class="row">
         <shelter *ngFor="let shelter of sheltersList" [shelter]="shelter"></shelter>
