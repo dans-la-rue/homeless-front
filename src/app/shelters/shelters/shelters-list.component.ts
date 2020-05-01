@@ -15,7 +15,8 @@ export class SheltersListComponent implements OnInit {
   sheltersList: Shelter[];
   shelter = {
     address: 'asfsadfsa',
-    availableBeds: 6
+    availableBeds: 6,
+    id: 6
   } as Shelter;
   private url = environment.baseUrl + '/' + this.uri;
 
@@ -47,6 +48,23 @@ export class SheltersListComponent implements OnInit {
     this._httpClient.post<Shelter>(this.url, this.shelter, httpOptions)
       .subscribe((shelterCreated: Shelter) => {
           console.log(shelterCreated);
+          this.sheltersList.push(shelterCreated);
+          this.shelter.id = shelterCreated.id;
+        }
+      );
+  }
+
+  deleteShelter() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa('admin:nimda')
+      })
+    };
+    this._httpClient.delete<Shelter>(this.url + '/' + this.shelter.id, httpOptions)
+      .subscribe((shelter: Shelter) => {
+          console.log('deleted !');
+          console.log(this.shelter);
         }
       );
   }
