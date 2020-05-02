@@ -1,5 +1,5 @@
 export interface Shelter {
-  id
-  address
-  availableBeds
+  id: number
+  address: string
+  availableBeds: number
 }

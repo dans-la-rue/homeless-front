@@ -13,6 +13,10 @@ import {ComponentsModule} from './components/components.module';
 import {SheltersModule} from './shelters/shelters.module';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {SheltersEffects} from './effects/shelters.effect';
+import {StoreModule} from '@ngrx/store';
+import {sheltersReducer} from './reducers/shelters.reducer';
 
 
 @NgModule({
@@ -30,6 +34,8 @@ import {environment} from '../environments/environment';
     SheltersModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    EffectsModule.forRoot([SheltersEffects]),
+    StoreModule.forRoot({sheltersList: sheltersReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]
