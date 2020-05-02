@@ -1,32 +1,24 @@
 # Homeless-front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
+Display a list of all the shelters available to the homeless people.  
+The number of available beds will be displayed next to each shelter.  
+The numbers will be updated live by the owners of the shelters.  
+A list of various available services (syringes, food location, ...) will be displayed to the homeless people along with the current state of the service.  
+This PWA is installable on your devices. This allows you to access the different features while offline.  
+No direct communication between the user and the admin of the shelters is allowed for "political reasons".  
 
-## Development server
+## Techno
 
-Run `npm install` to install all dependencies.  
+Project made with Spring Boot 1 (No Webflux), Swagger, Angular, PostgresQL, Maven, CircleCI and Github Action, and Docker.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+See project front hosted on github pages: [front](https://homeless.project.lambla.eu)  
+See project backend (swagger) hosted on a personal swarm cluster: [swagger](https://homeless-api.project.lambla.eu/swagger-ui.html#/)  
 
-## Code scaffolding
+## Call for contributions
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+If you want to contribute to this project, please see the agile board on github an feel free to raise any PR or issues.  
+Thanks in advance,
+Any help will be welcome =) 
 
 
 ## documentation
@@ -34,5 +26,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [icons](https://demos.creative-tim.com/paper-kit-2-angular/#/nucleoicons)  
 [paperkit doc](https://demos.creative-tim.com/paper-kit-2-angular/#/documentation/navigation)  
 [paperkit components](https://demos.creative-tim.com/paper-kit-2-angular/#/home)  
+
+
+## inspirations and sources
+
+[demo project for ngrx](https://stackblitz.com/github/duncanhunter/angular-and-ngrx-demo-app/tree/20-create-effects?file=src%2Fapp%2Fevent%2Fstate%2Fattendees%2Fattendees.effects.ts)
+[another ngrx demo](https://github.com/mike1477/NGRX-Products/tree/master/src/app/products/store)
 
 
