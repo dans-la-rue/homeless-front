@@ -9,15 +9,23 @@ No direct communication between the user and the admin of the shelters is allowe
 
 ## Techno
 
-Project made with Spring Boot 1 (No Webflux), Swagger, Angular, PostgresQL, Maven, CircleCI and Github Action, and Docker.
+Project made with:  
+- Spring Boot 1 (No Webflux)
+- Swagger
+- Angular
+- PostgresQL
+- Maven
+- CircleCI 
+- Github Action
+- Docker
 
 See project front hosted on github pages: [front](https://homeless.project.lambla.eu)  
 See project backend (swagger) hosted on a personal swarm cluster: [swagger](https://homeless-api.project.lambla.eu/swagger-ui.html#/)  
 
 ## Call for contributions
 
-If you want to contribute to this project, please see the agile board on github an feel free to raise any PR or issues.  
-Thanks in advance,
+If you want to contribute to this project, please see our [agile board](https://github.com/orgs/dans-la-rue/projects) on github an feel free to raise any PR or issues.  
+Thanks in advance,  
 Any help will be welcome =) 
 
 
@@ -30,7 +38,7 @@ Any help will be welcome =)
 
 ## inspirations and sources
 
-[demo project for ngrx](https://stackblitz.com/github/duncanhunter/angular-and-ngrx-demo-app/tree/20-create-effects?file=src%2Fapp%2Fevent%2Fstate%2Fattendees%2Fattendees.effects.ts)
-[another ngrx demo](https://github.com/mike1477/NGRX-Products/tree/master/src/app/products/store)
+[demo project for ngrx](https://stackblitz.com/github/duncanhunter/angular-and-ngrx-demo-app/tree/20-create-effects?file=src%2Fapp%2Fevent%2Fstate%2Fattendees%2Fattendees.effects.ts)  
+[another ngrx demo](https://github.com/mike1477/NGRX-Products/tree/master/src/app/products/store)  
 
 
