@@ -17,6 +17,7 @@ export class ShelterComponent implements OnInit {
   profileForm = new FormGroup({
     address: new FormControl(''),
     availableBeds: new FormControl(''),
+    news: new FormControl('')
   });
 
   constructor(private store: Store<{ sheltersList: Shelter[] }>) {
@@ -25,6 +26,7 @@ export class ShelterComponent implements OnInit {
   ngOnInit(): void {
     this.profileForm.get('address').setValue(this.shelter.address);
     this.profileForm.get('availableBeds').setValue(this.shelter.availableBeds);
+    this.profileForm.get('news').setValue(this.shelter.news);
   }
 
   /**
@@ -34,6 +36,7 @@ export class ShelterComponent implements OnInit {
     this.shelter = this.simpleClone(this.shelter);
     this.shelter.address = this.profileForm.value.address;
     this.shelter.availableBeds = this.profileForm.value.availableBeds;
+    this.shelter.news = this.profileForm.value.news;
     this.store.dispatch(updateShelter({shelter: this.shelter}));
     // todo: change the edit status only after action is done (callback ?)
     this.edit = !this.edit;

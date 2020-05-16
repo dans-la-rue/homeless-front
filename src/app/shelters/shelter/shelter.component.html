@@ -13,9 +13,6 @@
       <img src="./assets/icons/delete.svg" alt="Delete">
     </button>
   </div>
-  <div class="card-image">
-    <a href="https://placeholder.com"><img class="img-fluid" src="https://via.placeholder.com/250"></a>
-  </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
       <div class="form-group">
@@ -29,14 +26,10 @@
                formControlName="availableBeds" placeholder="{{shelter.availableBeds}}">
         <p *ngIf="!edit" class="card-text">{{shelter.availableBeds}}</p>
 
-        <!--                  <h6 class="card-subtitle mb-2 text-muted">Shelter name</h6>-->
-        <!--      <a href="#" class="card-link">Another link</a>-->
-
-        <!--
-                <button type="button" (click)="this.edit=!this.edit" class="btn btn-danger btn-link">
-                  <img src="./assets/icons/pencil.svg" alt="Edit">
-                </button>
-        -->
+        <label for="news">news</label>
+        <input *ngIf="edit" class="form-control" id="news"
+               formControlName="news" placeholder="{{shelter.news}}">
+        <p *ngIf="!edit" class="card-text">{{shelter.news}}</p>
 
         <div *ngIf="edit" class="form-row">
           <button class="btn btn-outline-default btn-danger" type="submit">Save</button>
@@ -44,8 +37,7 @@
       </div>
     </form>
     <div class="card-footer text-left pt-0">
-      <a _ngcontent-c4="" class="like-lnk btn btn-link btn-default" href="#0">Like</a>
-      <a _ngcontent-c4="" class="btn btn-link btn-default" href="#0">Share</a>
+      <a _ngcontent-c4="" class="like-lnk btn btn-link btn-default" href="#0">More</a>
     </div>
   </div>
 </div>
