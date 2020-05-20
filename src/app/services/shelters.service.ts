@@ -7,15 +7,13 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {BasicAuth} from '../models/BasicAuth.models';
 import {select, Store} from '@ngrx/store';
-import {BasicFormComponent} from '../auth/basic-form/basic-form.component';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SheltersService {
 
-  private credentials;
+  private credentials = 'admin:nimda';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -26,11 +24,10 @@ export class SheltersService {
   private url = environment.baseUrl + '/' + this.uri;
   private shelterList$: Observable<Shelter[]>;
   private cred$: Observable<BasicAuth> = this.store.pipe(select('cred'));
-  // should be in his own service
-  private modalRef: NgbModalRef;
 
-  constructor(private _httpClient: HttpClient, private store: Store<{ cred: BasicAuth }>, private modalService: NgbModal) {
+  constructor(private _httpClient: HttpClient, private store: Store<{ cred: BasicAuth }>) {
     this.cred$.subscribe((newCreds: BasicAuth) => {
+        console.log('credentials used', newCreds);
         this.credentials = newCreds.login + ':' + newCreds.password;
         // TODO: modify instead of recreate
         this.httpOptions = {
@@ -39,28 +36,8 @@ export class SheltersService {
             'Authorization': 'Basic ' + btoa(this.credentials)
           })
         };
-      this.closeModal(this.credentials);
       }
     );
-  }
-
-  /**
-   * display modal if he's not already displayed
-   */
-  displayModal() {
-    this.modalRef = this.modalService.open(BasicFormComponent);
-    this.modalRef.componentInstance.name = 'login';
-  }
-
-  /**
-   * this method can be called to close the login modal
-   * this should probably be put in a separated service but for now it's there
-   * @param credentials: just used as an example to return something to the caller of the Modal
-   */
-  closeModal(credentials: string) {
-    console.log("closing modal with: ", credentials);
-    if (this.modalRef != undefined)
-      this.modalRef.close(credentials);
   }
 
   /**
@@ -75,11 +52,6 @@ export class SheltersService {
    */
   deleteShelter(id: number) {
     return this._httpClient.delete<Shelter>(this.url + '/' + id, this.httpOptions);
-  }
-
-  // while waiting for the real auth service
-  doNothing() {
-    return this._httpClient.get(this.url + '/', this.httpOptions);
   }
 
   /**

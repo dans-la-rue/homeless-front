@@ -5,7 +5,6 @@ import {
   deleteShelter,
   getAllShelters,
   successAddShelter,
-  successConnexionRequest,
   successDeleteShelter,
   successGetAllShelters,
   successUpdateShelter,
@@ -14,9 +13,7 @@ import {
 import {Shelter} from '../models/Shelter.models';
 import {BasicAuth} from '../models/BasicAuth.models';
 
-export let admin: boolean = false;
 export let sheltersList: Shelter[] = undefined;
-export let shelter: Shelter = undefined;
 export let cred: BasicAuth = {
   login: 'admin',
   password: 'nimda'
@@ -26,22 +23,6 @@ const _authReducer = createReducer(cred,
   on(connexionRequest, (state, action) => {
     cred = action.cred;
     return cred;
-  })
-);
-
-const _shelterReducer = createReducer(shelter,
-  on(updateShelter, (state, action) => {
-    console.log('update shelter reducer');
-    shelter = action.shelter;
-    return shelter;
-  })
-);
-
-const _adminReducer = createReducer(admin,
-  on(successConnexionRequest, (state, action) => {
-    console.log('success connexion reducer');
-    admin = true;
-    return admin;
   })
 );
 
@@ -70,6 +51,10 @@ const _sheltersReducer = createReducer(sheltersList,
     // sheltersList = action.sheltersList;
     return sheltersList;
   }),
+  on(updateShelter, (state, action) => {
+    console.log('update reducer');
+    return sheltersList;
+  }),
   on(addShelter, (state, action) => {
     console.log('add reducer');
     return sheltersList;
@@ -87,12 +72,4 @@ export function sheltersReducer(state, action) {
 
 export function authReducer(state, action) {
   return _authReducer(state, action);
-}
-
-export function adminReducer(state, action) {
-  return _adminReducer(state, action);
-}
-
-export function shelterReducer(state, action) {
-  return _shelterReducer(state, action);
 }
