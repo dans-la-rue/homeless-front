@@ -1,17 +1,32 @@
 import {createReducer, on} from '@ngrx/store';
 import {
   addShelter,
+  connexionRequest,
   deleteShelter,
   getAllShelters,
   successAddShelter,
   successDeleteShelter,
-  successGetAllShelters, successUpdateShelter, updateShelter
+  successGetAllShelters,
+  successUpdateShelter,
+  updateShelter
 } from '../actions/shelters.action';
 import {Shelter} from '../models/Shelter.models';
+import {BasicAuth} from '../models/BasicAuth.models';
 
 export let sheltersList: Shelter[] = undefined;
+export let cred: BasicAuth = {
+  login: 'admin',
+  password: 'nimda'
+};
 
-const _counterReducer = createReducer(sheltersList,
+const _authReducer = createReducer(cred,
+  on(connexionRequest, (state, action) => {
+    cred = action.cred;
+    return cred;
+  })
+);
+
+const _sheltersReducer = createReducer(sheltersList,
   on(successDeleteShelter, (state) => {
     console.log('shelter deleted reducer');
     return sheltersList;
@@ -52,5 +67,9 @@ const _counterReducer = createReducer(sheltersList,
 );
 
 export function sheltersReducer(state, action) {
-  return _counterReducer(state, action);
+  return _sheltersReducer(state, action);
+}
+
+export function authReducer(state, action) {
+  return _authReducer(state, action);
 }

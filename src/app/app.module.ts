@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app.routing';
@@ -16,14 +16,16 @@ import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {SheltersEffects} from './effects/shelters.effect';
 import {StoreModule} from '@ngrx/store';
-import {sheltersReducer} from './reducers/shelters.reducer';
+import {authReducer, sheltersReducer} from './reducers/shelters.reducer';
+import {BasicFormComponent} from './auth/basic-form/basic-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    BasicFormComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +35,10 @@ import {sheltersReducer} from './reducers/shelters.reducer';
     ComponentsModule,
     SheltersModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     EffectsModule.forRoot([SheltersEffects]),
-    StoreModule.forRoot({sheltersList: sheltersReducer})
+    StoreModule.forRoot({sheltersList: sheltersReducer, cred: authReducer}),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
