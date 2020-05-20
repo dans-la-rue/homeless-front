@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {Shelter} from '../models/Shelter.models';
+import {BasicAuth} from '../models/BasicAuth.models';
 
 export const deleteShelter = createAction('[test] Delete a shelter', props<{ shelterId: number }>());
 export const getAllShelters = createAction('[Shelters Page] Load Shelters');
@@ -9,3 +10,5 @@ export const successAddShelter = createAction('[Shelters Page] Shelter added', p
 export const successUpdateShelter = createAction('[Shelters Page] Shelter updated', props<{ shelter: Shelter }>());
 export const successGetAllShelters = createAction('[Shelters Page] Shelters loaded', props<{ sheltersList: Shelter[] }>());
 export const successDeleteShelter = createAction('[Shelters Page] Shelters deleted');
+
+export const connexionRequest = createAction('[Login Page] connexion request', props<{ cred: BasicAuth}>());

@@ -5,6 +5,8 @@ import {ShelterList} from '../models/ShelterList.models';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {BasicAuth} from '../models/BasicAuth.models';
+import {select, Store} from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,21 @@ export class SheltersService {
   private uri = 'api/v1/shelters';
   private url = environment.baseUrl + '/' + this.uri;
   private shelterList$: Observable<Shelter[]>;
+  private cred$: Observable<BasicAuth> = this.store.pipe(select('cred'));
 
-  constructor(private _httpClient: HttpClient) {
+  constructor(private _httpClient: HttpClient, private store: Store<{ cred: BasicAuth }>) {
+    this.cred$.subscribe((newCreds: BasicAuth) => {
+        console.log('credentials used', newCreds);
+        this.credentials = newCreds.login + ':' + newCreds.password;
+        // TODO: modify instead of recreate
+        this.httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + btoa(this.credentials)
+          })
+        };
+      }
+    );
   }
 
   /**
