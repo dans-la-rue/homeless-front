@@ -5,7 +5,6 @@ import {Injectable} from '@angular/core';
 import {SheltersService} from '../services/shelters.service';
 import {
   addShelter,
-  connexionRequest,
   deleteShelter,
   getAllShelters,
   successAddShelter,
