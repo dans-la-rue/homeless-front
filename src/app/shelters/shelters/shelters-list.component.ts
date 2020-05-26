@@ -3,7 +3,6 @@ import {Shelter} from '../../models/Shelter.models';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {addShelter, getAllShelters} from '../../actions/shelters.action';
-import {Actions} from '@ngrx/effects';
 
 @Component({
   selector: 'shelter-list',
@@ -12,15 +11,9 @@ import {Actions} from '@ngrx/effects';
 })
 export class SheltersListComponent implements OnInit {
 
-  private sheltersList$: Observable<Shelter[]> = this.store.pipe(select('sheltersList'));
-  private admin$: Observable<boolean> = this.store.pipe(select('admin'));
-  private admin: boolean = false;
+  sheltersList$: Observable<Shelter[]> = this.store.pipe(select('sheltersList'));
 
-  constructor(private actionsSubj: Actions, private store: Store<{ admin: boolean, sheltersList: Shelter[] }>) {
-    this.admin$.subscribe((newAdmin: boolean) => {
-      this.admin = newAdmin;
-      }
-    );
+  constructor(private store: Store<{ sheltersList: Shelter[] }>) {
   }
 
   /**
@@ -39,6 +32,7 @@ export class SheltersListComponent implements OnInit {
     let shelter = {
       address: 'new address',
       availableBeds: 0,
+      id: 6
     } as Shelter;
     this.store.dispatch(addShelter({shelter}));
   }
