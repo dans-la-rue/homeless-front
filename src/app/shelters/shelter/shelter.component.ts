@@ -1,19 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Shelter} from '../../models/Shelter.models';
 import {FormControl, FormGroup} from '@angular/forms';
-import {deleteShelter, updateShelter} from '../../actions/shelters.action';
+import {deleteShelter, PostActions, updateShelter} from '../../actions/shelters.action';
 import {Store} from '@ngrx/store';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {BasicFormComponent} from '../../auth/basic-form/basic-form.component';
 import {Clone} from '../../utils/clone';
 import {BasicAuth} from '../../models/BasicAuth.models';
+import {Actions, ofType} from '@ngrx/effects';
+import {filter} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'shelter',
   templateUrl: './shelter.component.html',
   styleUrls: ['./shelter.component.scss']
 })
-export class ShelterComponent implements OnInit {
+export class ShelterComponent implements OnInit, OnDestroy {
 
   @Input() shelter: Shelter;
   edit: boolean = false;
@@ -23,7 +24,26 @@ export class ShelterComponent implements OnInit {
     availableBeds: new FormControl(''),
   });
 
-  constructor(private clone: Clone, private store: Store<{ cred: BasicAuth }>, private modalService: NgbModal) {
+  destroyed$ = new Subject<boolean>();
+
+  constructor(private actionsSubj: Actions, private clone: Clone, private store: Store<{ cred: BasicAuth }>) {
+    // we subscribe to the success update event so that we toggle the edit flag
+    //https://stackoverflow.com/questions/43226681/how-to-subscribe-to-action-success-callback-using-ngrx-and-effects
+    actionsSubj
+      .pipe(
+        ofType(PostActions.SUCCESS_UPDATE_SHELTER),
+        filter((value) => {
+          return value['shelter']['id'] == this.shelter.id;
+        })
+      )
+      .subscribe(data => {
+        this.edit = !this.edit;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   ngOnInit(): void {
@@ -39,23 +59,12 @@ export class ShelterComponent implements OnInit {
     this.shelter.address = this.profileForm.value.address;
     this.shelter.availableBeds = this.profileForm.value.availableBeds;
 
-    //TODO: check if user is connected
-
-    // display modal if he's not
-    const modalRef = this.modalService.open(BasicFormComponent);
-    modalRef.componentInstance.name = 'World';
-
-    // try request if he is
-    this.store.dispatch(updateShelter({shelter: this.shelter}));
-
     // TODO: display spinner
-    // TODO: change the edit status after action is done (callback ?)
-    this.edit = !this.edit;
-    // modalRef.close();
+    this.store.dispatch(updateShelter({shelter: this.shelter}));
   }
 
   /**
-   * call the effect of deleteing a shelter
+   * call the effect of deleting a shelter
    */
   deleteShelter() {
     this.store.dispatch(deleteShelter({shelterId: this.shelter.id}));

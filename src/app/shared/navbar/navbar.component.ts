@@ -1,6 +1,7 @@
 import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {SwUpdate} from '@angular/service-worker';
+import {SheltersService} from '../../services/shelters.service';
 
 @Component({
     selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
     deferredPrompt;
     showButton: boolean = true;
 
-    constructor(public location: Location, private element : ElementRef,private swUpdate: SwUpdate) {
+    constructor(private sheltersService: SheltersService, public location: Location, private element: ElementRef, private swUpdate: SwUpdate) {
         this.sidebarVisible = false;
     }
 
@@ -29,11 +30,10 @@ export class NavbarComponent implements OnInit {
           });
         }
     }
+
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];
-        // console.log(html);
-        // console.log(toggleButton, 'toggle');
 
         setTimeout(function(){
             toggleButton.classList.add('toggled');
@@ -42,13 +42,14 @@ export class NavbarComponent implements OnInit {
 
         this.sidebarVisible = true;
     };
+
     sidebarClose() {
         const html = document.getElementsByTagName('html')[0];
-        // console.log(html);
         this.toggleButton.classList.remove('toggled');
         this.sidebarVisible = false;
         html.classList.remove('nav-open');
     };
+
     sidebarToggle() {
         // const toggleButton = this.toggleButton;
         // const body = document.getElementsByTagName('body')[0];
@@ -58,29 +59,28 @@ export class NavbarComponent implements OnInit {
             this.sidebarClose();
         }
     };
+
     isHome() {
       var titlee = this.location.prepareExternalUrl(this.location.path());
       if(titlee.charAt(0) === '#'){
-          titlee = titlee.slice( 1 );
+        titlee = titlee.slice(1);
       }
-        if( titlee === '/home' ) {
-            return true;
-        }
-        else {
-            return false;
-        }
+      if (titlee === '/home') {
+        return true;
+      } else {
+        return false;
+      }
     }
     isDocumentation() {
       var titlee = this.location.prepareExternalUrl(this.location.path());
       if(titlee.charAt(0) === '#'){
-          titlee = titlee.slice( 1 );
+        titlee = titlee.slice(1);
       }
-        if( titlee === '/documentation' ) {
-            return true;
-        }
-        else {
-            return false;
-        }
+      if (titlee === '/documentation') {
+        return true;
+      } else {
+        return false;
+      }
     }
 
     /**
@@ -118,4 +118,8 @@ export class NavbarComponent implements OnInit {
         console.error('The home screen option is not possible');
       }
     }
+
+  displayLoginModal() {
+    this.sheltersService.displayModal();
+  }
 }
