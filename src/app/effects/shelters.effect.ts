@@ -8,29 +8,14 @@ import {
   deleteShelter,
   getAllShelters,
   successAddShelter,
-  successConnexionRequest,
   successDeleteShelter,
-  successGetAllShelters
+  successGetAllShelters,
+  successUpdateShelter,
+  updateShelter
 } from '../actions/shelters.action';
 
 @Injectable()
 export class SheltersEffects {
-
-  connexionRequest$ = createEffect(() => this.actions$.pipe(
-    ofType(connexionRequest),
-    // TODO use a real conexion service, not the shelter service
-    // TOD put that effect in a separated file
-    mergeMap((action) => this.sheltersService.doNothing()
-      .pipe(
-        map( isConnected => successConnexionRequest()),
-        map(isConnected => {
-          console.log('connexion service login attempt', isConnected);
-          return isConnected;
-        }),
-        catchError(() => EMPTY)
-      ))
-    )
-  );
 
   deleteShelter$ = createEffect(() => this.actions$.pipe(
     ofType(deleteShelter),
@@ -41,6 +26,16 @@ export class SheltersEffects {
           console.log('Shelter service deleting a shelter', sheltersList);
           return sheltersList;
         }),
+        catchError(() => EMPTY)
+      ))
+    )
+  );
+
+  updateShelter$ = createEffect(() => this.actions$.pipe(
+    ofType(updateShelter),
+    mergeMap((action) => this.sheltersService.updateShelter(action.shelter)
+      .pipe(
+        map(shelter => successUpdateShelter({shelter: shelter})),
         catchError(() => EMPTY)
       ))
     )
