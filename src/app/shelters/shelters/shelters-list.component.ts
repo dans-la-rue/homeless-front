@@ -32,7 +32,6 @@ export class SheltersListComponent implements OnInit {
     let shelter = {
       address: 'new address',
       availableBeds: 0,
-      id: 6
     } as Shelter;
     this.store.dispatch(addShelter({shelter}));
   }
