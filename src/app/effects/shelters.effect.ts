@@ -23,7 +23,7 @@ export class SheltersEffects {
       .pipe(
         map(sheltersList => successDeleteShelter()),
         map(sheltersList => {
-          console.log('test', sheltersList);
+          console.log('Shelter service deleting a shelter', sheltersList);
           return sheltersList;
         }),
         catchError(() => EMPTY)
