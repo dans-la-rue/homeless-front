@@ -1,12 +1,10 @@
-<div>
-    <button *ngIf="admin" type="button" (click)="addShelter()" class="btn btn-danger btn-link">
-      <p>Add a Shelter</p>
-      <img src="./assets/icons/pencil.svg" alt="Edit">
-    </button>
-    <div class="container">
-      <div class="row">
-        <shelter *ngFor="let shelter of sheltersList$ | async" [shelter]="shelter"></shelter>
-      </div>
-      <br />
-    </div>
+<div class="container p-5" >
+  <button *ngIf="admin" type="button" (click)="addShelter()" class="btn btn-danger btn-link">
+    <p>Add a Shelter</p>
+    <img src="./assets/icons/pencil.svg" alt="Edit">
+  </button>
+  <div>
+      <shelter *ngFor="let shelter of sheltersList$ | async" [shelter]="shelter"></shelter>
+    <br />
+  </div>
 </div>
