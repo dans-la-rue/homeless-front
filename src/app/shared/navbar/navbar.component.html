@@ -12,20 +12,18 @@
       <div class="navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Login" data-placement="bottom" (click)="displayLoginModal()"
-               target="_blank"> <i class="fa fa-github"></i>
-              <p class="d-lg-none">Login</p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom"
                href="https://github.com/dans-la-rue/homless-front" target="_blank"> <i class="fa fa-github"></i>
               <p class="d-lg-none">GitHub</p>
             </a>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn btn-outline-default btn-danger" (click)="addToHomeScreen()"
-                    *ngIf="showButton">Add to Home Screen
+            <button type="button" class="btn btn-outline-default btn-danger" (click)="displayLoginModal()"
+                    *ngIf="showButton">Login
+            </button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-outline-default btn-danger" (click)="addToHomeScreen()" >Add to Home Screen
             </button>
           </li>
         </ul>
