@@ -48,14 +48,8 @@ export class SheltersService {
    * display modal if he's not already displayed
    */
   displayModal() {
-    if (this.modalRef == undefined)
-      this.modalRef = this.modalService.open(BasicFormComponent);
+    this.modalRef = this.modalService.open(BasicFormComponent);
     this.modalRef.componentInstance.name = 'login';
-
-    // TODO: a LOGIN service can be setup and we could call him from here
-    this.modalRef.result.then(value => {
-      console.log('closing the modal with these credentials: ', value)
-    });
   }
 
   /**
@@ -64,6 +58,7 @@ export class SheltersService {
    * @param credentials: just used as an example to return something to the caller of the Modal
    */
   closeModal(credentials: string) {
+    console.log("closing modal with: ", credentials);
     if (this.modalRef != undefined)
       this.modalRef.close(credentials);
   }
@@ -80,6 +75,11 @@ export class SheltersService {
    */
   deleteShelter(id: number) {
     return this._httpClient.delete<Shelter>(this.url + '/' + id, this.httpOptions);
+  }
+
+  // while waiting for the real auth service
+  doNothing() {
+    return this._httpClient.get(this.url + '/', this.httpOptions);
   }
 
   /**
