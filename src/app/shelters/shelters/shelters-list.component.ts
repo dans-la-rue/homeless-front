@@ -12,9 +12,9 @@ import {Actions} from '@ngrx/effects';
 })
 export class SheltersListComponent implements OnInit {
 
-  private sheltersList$: Observable<Shelter[]> = this.store.pipe(select('sheltersList'));
+  sheltersList$: Observable<Shelter[]> = this.store.pipe(select('sheltersList'));
   private admin$: Observable<boolean> = this.store.pipe(select('admin'));
-  private admin: boolean = false;
+  admin: boolean = false;
 
   constructor(private actionsSubj: Actions, private store: Store<{ admin: boolean, sheltersList: Shelter[] }>) {
     this.admin$.subscribe((newAdmin: boolean) => {
