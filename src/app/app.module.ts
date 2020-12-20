@@ -9,7 +9,6 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './shared/navbar/navbar.component';
 import {FooterComponent} from './shared/footer/footer.component';
 
-import {ComponentsModule} from './components/components.module';
 import {SheltersModule} from './shelters/shelters.module';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
@@ -32,7 +31,6 @@ import {ShelterEffects} from './effects/shelter.effect';
     NgbModule,
     FormsModule,
     RouterModule,
-    ComponentsModule,
     SheltersModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
