@@ -25,7 +25,7 @@ export class ShelterComponent implements OnInit, OnDestroy {
 
   destroyed$ = new Subject<boolean>();
   private admin$: Observable<boolean> = this.store.pipe(select('admin'));
-  private admin: boolean = false;
+  admin: boolean = false;
 
   private shelter$: Observable<Shelter> = this.store.pipe(select('shelter'));
 
