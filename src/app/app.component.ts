@@ -1,10 +1,9 @@
-import { Component, OnInit, Inject, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import {Component, ElementRef, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {NavigationEnd, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
-import { DOCUMENT } from '@angular/common';
-import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import {DOCUMENT, Location} from '@angular/common';
+import {NavbarComponent} from './shared/navbar/navbar.component';
 
 @Component({
     selector: 'app-root',
@@ -26,16 +25,6 @@ export class AppComponent implements OnInit {
             }
             this.navbar.sidebarClose();
         });
-        this.renderer.listen('window', 'scroll', (event) => {
-            const number = window.scrollY;
-            if (number > 150 || window.pageYOffset > 150) {
-                // add logic
-                // navbar.classList.remove('navbar-transparent');
-            } else {
-                // remove logic
-                // navbar.classList.add('navbar-transparent');
-            }
-        });
         var ua = window.navigator.userAgent;
         var trident = ua.indexOf('Trident/');
         if (trident > 0) {
@@ -46,8 +35,6 @@ export class AppComponent implements OnInit {
         if (version) {
             var body = document.getElementsByTagName('body')[0];
             body.classList.add('ie-background');
-
         }
-
     }
 }

@@ -60,29 +60,6 @@ export class NavbarComponent implements OnInit {
         }
     };
 
-    isHome() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      if(titlee.charAt(0) === '#'){
-        titlee = titlee.slice(1);
-      }
-      if (titlee === '/home') {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    isDocumentation() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      if(titlee.charAt(0) === '#'){
-        titlee = titlee.slice(1);
-      }
-      if (titlee === '/documentation') {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
     /**
      * Event to purpose to the user to install application
      * @param e event received
