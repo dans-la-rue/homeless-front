@@ -18,7 +18,7 @@ export class BasicFormComponent implements OnInit, OnDestroy {
     password: new FormControl('')
   });
   private cred$: Observable<BasicAuth> = this.store.pipe(select('cred'));
-  private cred: BasicAuth;
+  cred: BasicAuth;
 
   constructor(private clone: Clone, private store: Store<{ cred: BasicAuth }>) {
     this.cred$.subscribe((newCreds: BasicAuth) => {
