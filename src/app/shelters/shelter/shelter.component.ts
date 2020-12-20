@@ -1,13 +1,12 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Shelter} from '../../models/Shelter.models';
 import {FormControl, FormGroup} from '@angular/forms';
-import {deleteShelter, PostActions, updateShelter} from '../../actions/shelters.action';
-import {Store} from '@ngrx/store';
+import {deleteShelter, updateShelter} from '../../actions/shelters.action';
+import {select, Store} from '@ngrx/store';
 import {Clone} from '../../utils/clone';
 import {BasicAuth} from '../../models/BasicAuth.models';
-import {Actions, ofType} from '@ngrx/effects';
-import {filter} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {Actions} from '@ngrx/effects';
+import {Observable, Subject} from 'rxjs';
 
 @Component({
   selector: 'shelter',
@@ -25,20 +24,33 @@ export class ShelterComponent implements OnInit, OnDestroy {
   });
 
   destroyed$ = new Subject<boolean>();
+  private admin$: Observable<boolean> = this.store.pipe(select('admin'));
+  private admin: boolean = false;
 
-  constructor(private actionsSubj: Actions, private clone: Clone, private store: Store<{ cred: BasicAuth }>) {
-    // we subscribe to the success update event so that we toggle the edit flag
-    //https://stackoverflow.com/questions/43226681/how-to-subscribe-to-action-success-callback-using-ngrx-and-effects
-    actionsSubj
-      .pipe(
-        ofType(PostActions.SUCCESS_UPDATE_SHELTER),
-        filter((value) => {
-          return value['shelter']['id'] == this.shelter.id;
-        })
-      )
-      .subscribe(data => {
+  private shelter$: Observable<Shelter> = this.store.pipe(select('shelter'));
+
+  constructor(private actionsSubj: Actions, private clone: Clone, private store: Store<{ shelter: Shelter, admin: boolean, cred: BasicAuth}>) {
+    // if success we update the shelter and set the edit flag
+    // if error, we can check here if needed
+    // a problem with this is that every shelter is aware about every changes on every shelter, there has to be a better way
+    this.shelter$
+      .filter((value) => {
+          if(value == undefined)
+            return false;
+          // here is a filter that we shouldn't have to do
+          return value['id'] == this.shelter.id;
+        }
+      ).subscribe((newShelter: Shelter) => {
+        this.shelter = newShelter;
+        console.log("shelter updated: ", this.shelter);
         this.edit = !this.edit;
-      });
+      }
+    );
+    this.admin$
+      .subscribe((newAdmin: boolean) => {
+          this.admin = newAdmin;
+        }
+      );
   }
 
   ngOnDestroy() {

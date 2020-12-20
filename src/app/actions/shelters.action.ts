@@ -11,6 +11,7 @@ export class PostActions {
   static SUCCESS_ADD_SHELTER = '[Shelters Page] Shelter added';
   static SUCCESS_GET_ALL_SHELTER = '[Shelters Page] Shelters loaded';
   static SUCESS_DELETE_SHELTER = '[Shelters Page] Shelters deleted';
+  static SUCCESS_CONNEXION_REQUEST = '[Login Page] connexion successful';
 }
 
 export const deleteShelter = createAction(PostActions.DELETE_SHELTER, props<{ shelterId: number }>());
@@ -23,3 +24,4 @@ export const successGetAllShelters = createAction(PostActions.SUCCESS_GET_ALL_SH
 export const successDeleteShelter = createAction(PostActions.SUCESS_DELETE_SHELTER);
 
 export const connexionRequest = createAction('[Login Page] connexion request', props<{ cred: BasicAuth}>());
+export const successConnexionRequest = createAction(PostActions.SUCCESS_CONNEXION_REQUEST);

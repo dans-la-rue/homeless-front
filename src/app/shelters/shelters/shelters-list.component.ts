@@ -3,6 +3,7 @@ import {Shelter} from '../../models/Shelter.models';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {addShelter, getAllShelters} from '../../actions/shelters.action';
+import {Actions} from '@ngrx/effects';
 
 @Component({
   selector: 'shelter-list',
@@ -11,9 +12,15 @@ import {addShelter, getAllShelters} from '../../actions/shelters.action';
 })
 export class SheltersListComponent implements OnInit {
 
-  sheltersList$: Observable<Shelter[]> = this.store.pipe(select('sheltersList'));
+  private sheltersList$: Observable<Shelter[]> = this.store.pipe(select('sheltersList'));
+  private admin$: Observable<boolean> = this.store.pipe(select('admin'));
+  private admin: boolean = false;
 
-  constructor(private store: Store<{ sheltersList: Shelter[] }>) {
+  constructor(private actionsSubj: Actions, private store: Store<{ admin: boolean, sheltersList: Shelter[] }>) {
+    this.admin$.subscribe((newAdmin: boolean) => {
+      this.admin = newAdmin;
+      }
+    );
   }
 
   /**
