@@ -10,7 +10,7 @@
       <img src="./assets/icons/pencil.svg" alt="Edit">
     </button>
     <button *ngIf="admin" type="button" (click)="deleteShelter()" class="btn btn-danger btn-link">
-      <img src="./assets/icons/delete.svg" alt="Delete">
+      <img src="./assets/icons/trash.svg" alt="Delete">
     </button>
   </div>
   <div class="card-body">
@@ -27,7 +27,7 @@
         <p *ngIf="!edit" class="card-text">{{shelter.availableBeds}}</p>
 
         <div *ngIf="edit" class="form-row">
-          <button class="btn btn-outline-default btn-danger" type="submit">Save</button>
+          <button class="btn btn-outline-default btn-danger" type="submit">Login</button>
         </div>
       </div>
     </form>

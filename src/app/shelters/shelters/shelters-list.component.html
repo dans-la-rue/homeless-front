@@ -1,6 +1,5 @@
 <div class="container p-5" >
   <button *ngIf="admin" type="button" class="btn btn-outline-default btn-danger" (click)="addShelter()" >Add a Shelter
-    <img src="./assets/icons/pencil.svg" alt="Edit">
   </button>
   <div>
     <shelter *ngFor="let shelter of sheltersList$ | async" [shelter]="shelter"></shelter>

@@ -32,6 +32,7 @@ Any help will be welcome =)
 ## documentation
 
 [icons](https://demos.creative-tim.com/paper-kit-2-angular/#/nucleoicons)  
+[icons2](https://useiconic.com/open/)
 [paperkit doc](https://demos.creative-tim.com/paper-kit-2-angular/#/documentation/navigation)  
 [paperkit components](https://demos.creative-tim.com/paper-kit-2-angular/#/home)  
 
