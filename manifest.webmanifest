@@ -1,0 +1,35 @@
+{
+  "name": "homeless-front",
+  "short_name": "homeless-front",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "50x50",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/cropped-favicon4-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/cropped-favicon4-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/cropped-favicon4-270x270.png",
+      "sizes": "2270x270",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}
