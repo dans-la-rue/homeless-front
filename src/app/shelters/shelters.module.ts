@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {SheltersListComponent} from './shelters/shelters-list.component';
@@ -12,7 +12,8 @@ import {ShelterComponent} from './shelter/shelter.component';
       CommonModule,
       FormsModule,
       NgbModule,
-      HttpClientModule
+      HttpClientModule,
+      ReactiveFormsModule
     ],
     declarations: [
       SheltersListComponent,

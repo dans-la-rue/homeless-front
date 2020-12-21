@@ -1,26 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-brand fixed-top " color-on-scroll="500">
+<div class="container">
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <div class="navbar-translate">
-            <a class="navbar-brand" href="https://homeless.project.lambla.eu">Dans la rue</a>
-            <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
-                <span class="navbar-toggler-bar"></span>
-                <span class="navbar-toggler-bar"></span>
-                <span class="navbar-toggler-bar"></span>
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="https://homeless.project.lambla.eu">Dans la rue</a>
+        <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()">
+          <span class="navbar-toggler-bar"></span>
+          <span class="navbar-toggler-bar"></span>
+          <span class="navbar-toggler-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom"
+               href="https://github.com/dans-la-rue/homless-front" target="_blank"> <i class="fa fa-github"></i>
+              <p class="d-lg-none">GitHub</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-outline-default btn-danger" (click)="displayLoginModal()"
+                    *ngIf="showButton">Login
             </button>
-        </div>
-        <div class="navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item" *ngIf="!isDocumentation()">
-                <a class="nav-link" rel="tooltip" title="Star on GitHub" data-placement="bottom" href="https://github.com/dans-la-rue/homless-front" target="_blank"> <i class="fa fa-github"></i>
-                  <p class="d-lg-none">GitHub</p>
-                </a>
-              </li>
-              <li class="nav-item" *ngIf="!isDocumentation()">
-                <button type="button" class="btn btn-outline-default btn-danger" (click)="addToHomeScreen()"
-                        *ngIf="showButton">Add to Home Screen
-                </button>
-              </li>
-            </ul>
-        </div>
+          </li>
+          <li class="nav-item">
+            <button *ngIf="deferredPrompt" type="button" class="btn btn-outline-default btn-danger" (click)="addToHomeScreen()" >Add to Home Screen
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
+</div>

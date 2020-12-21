@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
 import {Shelter} from '../../models/Shelter.models';
-import {ShelterList} from '../../models/ShelterList.models';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {addShelter, getAllShelters} from '../../actions/shelters.action';
+import {Actions} from '@ngrx/effects';
 
 @Component({
   selector: 'shelter-list',
@@ -11,26 +12,34 @@ import {ShelterList} from '../../models/ShelterList.models';
 })
 export class SheltersListComponent implements OnInit {
 
-  private uri = 'api/v1/shelters';
-  sheltersList: Shelter[];
-  private url = environment.baseUrl + '/' + this.uri;
+  sheltersList$: Observable<Shelter[]> = this.store.pipe(select('sheltersList'));
+  private admin$: Observable<boolean> = this.store.pipe(select('admin'));
+  admin: boolean = false;
 
-  constructor(private _httpClient: HttpClient) {
+  constructor(private actionsSubj: Actions, private store: Store<{ admin: boolean, sheltersList: Shelter[] }>) {
+    this.admin$.subscribe((newAdmin: boolean) => {
+      this.admin = newAdmin;
+      }
+    );
   }
 
+  /**
+   * load the list of all the shelters asap
+   * TODO: display a spinner
+   */
   ngOnInit() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa('admin:nimda')
-      })
-    };
-    this._httpClient.get<ShelterList>(this.url, httpOptions)
-      .subscribe((sheltersList: ShelterList) => {
-          this.sheltersList = sheltersList.content;
-          console.log(this.sheltersList);
-        }
-      );
+    this.store.dispatch(getAllShelters());
   }
 
+  /**
+   * call the effect of adding a new shelter
+   * TODO: display a special empty card that the user can use to fill the values of his new shelter
+   */
+  addShelter() {
+    let shelter = {
+      address: 'new address',
+      availableBeds: 0,
+    } as Shelter;
+    this.store.dispatch(addShelter({shelter}));
+  }
 }

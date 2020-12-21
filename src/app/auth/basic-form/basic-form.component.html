@@ -1,0 +1,17 @@
+<div class="card-body">
+  <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+    <div class="form-group">
+      <label for="login">login</label>
+      <input class="form-control" id="login"
+             formControlName="login" placeholder="{{cred.login}}">
+
+      <label for="password">password</label>
+      <input class="form-control" id="password"
+             formControlName="password" placeholder="{{cred.password}}">
+
+      <div class="form-row">
+        <button class="btn btn-outline-default btn-danger" type="submit">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
