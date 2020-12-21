@@ -77,6 +77,7 @@ export class NavbarComponent implements OnInit {
      */
     addToHomeScreen() {
       // hide our user interface that shows our A2HS button
+      console.log("this.deferredPrompt=",this.deferredPrompt);
       if (this.deferredPrompt) {
         this.showButton = false;
         // Show the prompt
